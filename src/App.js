@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
+
+import Routes from 'views/Routes';
+import Sidebar from 'components/Sidebar';
+import CodeBlock, { CodeBlockProvider } from 'components/CodeBlock';
 
 const App = () => (
     <HashRouter>
-        <Switch>
-            <Route path='/*' component={<div>asd</div>} />
-        </Switch>
+        <Sidebar />
+        <CodeBlockProvider>
+            <main className='content'>
+                <article className='content-main'>
+                    <Suspense fallback='Loading...'>
+                        <Switch>
+                            {Routes.map(props => (
+                                <Route key={props.path} {...props} />
+                            ))}
+                        </Switch>
+                    </Suspense>
+                </article>
+                <CodeBlock />
+            </main>
+        </CodeBlockProvider>
     </HashRouter>
 );
 

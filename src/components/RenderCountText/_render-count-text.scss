@@ -1,0 +1,9 @@
+.render-count-text {
+    color: $color-white;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+}

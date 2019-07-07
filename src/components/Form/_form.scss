@@ -1,0 +1,193 @@
+%text-wrapper {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    width: 50rem;
+    max-width: 100%;
+
+    &-wrapper {
+        overflow-y: auto;
+        max-height: 20rem;
+        max-width: 100%;
+        border: 2px solid $color-white;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 1rem;
+    }
+
+
+    &-view {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: 100%;
+    }
+
+    &--loading {
+        font-size: 3rem;
+        margin: 2rem 0;
+    }
+
+    &-select {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        border-radius: .4rem;
+        border: 0;
+        outline: 0;
+        padding: .5rem 1rem;
+        background-color: rgba($color-white, .1);
+        color: rgba($color-white, .7);
+
+        &:focus {
+            background-color: rgba($color-white, .2);
+            color: $color-white;
+        }
+
+        &[invalid=true] {
+            border: 1px solid red;
+        }
+
+        option {
+            background-color: rgba($color-blue, .8);
+            color: $color-black;
+        }
+
+        &-label {
+            color: $color-white;
+            font-size: 2rem;
+            margin-bottom: -.5rem;
+            margin-top: 1rem;
+        }
+    }
+
+    &-checkbox {
+        display: none;
+
+        &:checked {
+            + .form-checkbox-label::before {
+                background-color: rgba($color-white, .5);
+            }
+        }
+
+        &[invalid=true] {
+            + .form-checkbox-label::before {
+                border: 1px solid red;
+            }
+        }
+
+        &-label {
+            cursor: pointer;
+            font-size: 1.6rem;
+            color: $color-white;
+            margin-bottom: .5rem;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                height: 1.5rem;
+                width: 1.5rem;
+                border: 1px solid $color-white;
+                margin-bottom: -.25rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    &-list {
+        &-item {
+            @extend %text-wrapper;
+            margin-bottom: 1rem;
+            padding-bottom: .5rem;
+            list-style: none;
+            overflow: hidden;
+
+            &:not(:last-child) {
+                border-bottom: .1rem solid rgba($color-white, .5);
+            }
+
+            &-header {
+                @extend %text-wrapper;
+                cursor: pointer;
+                font-size: 1.5rem;
+                white-space: nowrap;
+                color: rgba($color-white, .9);
+            }
+
+            &-body {
+                @extend %text-wrapper;
+                font-size: 1.4rem;
+                height: 2rem;
+            }
+
+            &-comment {
+                @extend %text-wrapper;
+                opacity: 1;
+                height: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            &:not(.open) .form-list-item {
+                &-body {
+                    overflow: hidden;
+                    height: 0;
+                }
+
+                &-header {
+                    color: rgba($color-white, .5);
+
+                    &:hover, &:focus {
+                        color: rgba($color-white, .7);
+                    }
+                }
+
+                &-comment {
+                    height: 0;
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &-comment-input {
+        width: 80%;
+
+        &[invalid=true] {
+            border: 2px solid red;
+        }
+
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 10rem;
+
+            &:not(.open) {
+                height: 0;
+                opacity: 0;
+                overflow: hidden;
+            }
+        }
+    }
+
+    &-btn--submit {
+        align-self: flex-end;
+        border-radius: 1rem;
+        border: 0;
+        outline: 0;
+        box-shadow: 0 .2rem .3rem rgba($color-white, .1);
+        margin-top: 2rem;
+        padding: .4rem 2rem;
+        background-color: rgba($color-white, .1);
+        color: $color-white;
+
+        &:active {
+            box-shadow: 0 0 .2rem rgba($color-white, .1);
+            transform: scale(.98)
+        }
+    }
+}
