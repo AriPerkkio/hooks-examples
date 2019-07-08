@@ -1,4 +1,5 @@
-import 'core-js/features/promise';
+import 'react-app-polyfill/ie11';
+import 'core-js/features/string/repeat';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

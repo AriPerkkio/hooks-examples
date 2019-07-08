@@ -17,9 +17,8 @@ const usePosts = () => {
         setState({ loading: true });
 
         Api.getPosts()
-            .then(posts => setState({ posts }))
-            .catch(() => setState({ error: true }))
-            .finally(() => setState({ loading: false }));
+            .then(posts => setState({ posts, loading: false }))
+            .catch(() => setState({ error: true, loading: false }));
     }, []);
 
     return state;
