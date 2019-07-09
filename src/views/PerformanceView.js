@@ -60,7 +60,7 @@ const PerformanceView = () => {
             <CodeBlockButton fileName='components/RenderCountText/RenderCountWithUseMemo.js' />
             <RenderCountWithUseMemo text={memoText} />
 
-            <h3>Infinite loops</h3>
+            <h3>Dependency memoizing</h3>
             <Button onClick={toggleMemoCbMount}>
                 {memoCbMounted ? 'Unmount' : 'Mount'}
             </Button>

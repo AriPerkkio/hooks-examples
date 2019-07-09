@@ -29,11 +29,14 @@ const useForm = () => {
 
     const { selectedUser, selectedPost, comment } = state;
 
-    const onUserChange = useCallback(
-        ({ target: { value } }) =>
-            setState({ selectedUser: value, ...resetCommentAndError }),
-        []
-    );
+    const onUserChange = ({ target: { value } }) =>
+        setState({ selectedUser: value, ...resetCommentAndError });
+
+    const onPostChange = ({ target: { value } }) =>
+        setState({ selectedPost: value, ...resetCommentAndError });
+
+    const onCommentChange = ({ target: { value } }) =>
+        setState({ comment: value, error: null });
 
     const onCommentsUpdate = useCallback(
         comment =>
@@ -41,39 +44,25 @@ const useForm = () => {
         []
     );
 
-    const onPostChange = useCallback(
-        ({ target: { value } }) =>
-            setState({ selectedPost: value, ...resetCommentAndError }),
-        []
-    );
+    const onSubmit = e => {
+        e.preventDefault();
 
-    const onCommentChange = useCallback(
-        ({ target: { value } }) => setState({ comment: value, error: null }),
-        []
-    );
+        if (comment) {
+            const formDdata = {
+                user: selectedUser,
+                post: selectedPost,
+                comment: comment,
+            };
 
-    const onSubmit = useCallback(
-        e => {
-            e.preventDefault();
+            setState({ isSending: true });
 
-            if (comment) {
-                const formDdata = {
-                    user: selectedUser,
-                    post: selectedPost,
-                    comment: comment,
-                };
-
-                setState({ isSending: true });
-
-                Api.postForm(formDdata)
-                    .then(() => setState({ isSending: false }))
-                    .then(() => alert('Form sent'));
-            } else {
-                setState({ error: 'Comment missing' });
-            }
-        },
-        [selectedUser, selectedPost, comment]
-    );
+            Api.postForm(formDdata)
+                .then(() => setState({ isSending: false }))
+                .then(() => alert('Form sent'));
+        } else {
+            setState({ error: 'Comment missing' });
+        }
+    };
 
     useEffect(() => {
         Api.subscribeComments(onCommentsUpdate);

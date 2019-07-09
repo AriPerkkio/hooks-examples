@@ -15,7 +15,7 @@ const resolveFontSize = windowWidth => ({
 });
 
 const CodeBlock = () => {
-    const { codes, toggleCodes } = useContext(CodeBlockContext);
+    const { codes, toggleCodes, resetCodes } = useContext(CodeBlockContext);
     const [options, setOptions] = useReducer(mergeReducer, initialOptions);
 
     useWindowResize(width => {
@@ -50,7 +50,11 @@ const CodeBlock = () => {
 
     return (
         <article className={wrapperClassNames}>
-            <CodeBlockOptions values={options} onChange={setOptions} />
+            <CodeBlockOptions
+                values={options}
+                onChange={setOptions}
+                onReset={resetCodes}
+            />
 
             <div className={containerClassNames}>
                 {formattedCodes.map((formattedCode, key) => (

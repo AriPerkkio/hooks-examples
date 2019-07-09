@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { CodeBlockContext } from './CodeBlockProvider';
 import Button from 'components/common/Button';
@@ -13,7 +13,7 @@ const CodeBlockButton = ({ fileName, text, className }) => {
     const [code, setCode] = useState();
     const { toggleCodes, resetCodes } = useContext(CodeBlockContext);
 
-    const onClick = useCallback(() => {
+    const onClick = () => {
         if (code) {
             toggleCodes(code);
         } else {
@@ -24,7 +24,7 @@ const CodeBlockButton = ({ fileName, text, className }) => {
                     toggleCodes(resp);
                 });
         }
-    }, [toggleCodes, code, fileName]);
+    };
 
     // On unmount reset all selections in context
     useEffect(() => resetCodes, [resetCodes]);

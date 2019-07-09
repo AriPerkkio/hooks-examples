@@ -62,8 +62,10 @@ const Option = ({ name, label, type, onChange, value }) => {
     );
 };
 
-const CodeBlockOptions = ({ values, onChange }) => (
+const CodeBlockOptions = ({ values, onChange, onReset }) => (
     <div className={BASE_CLASS}>
+        <button onClick={onReset}>Close all</button>
+
         {options.map(props => (
             <Option
                 {...props}

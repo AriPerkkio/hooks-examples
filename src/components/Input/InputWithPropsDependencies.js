@@ -13,10 +13,10 @@ const Parent = () => {
     };
 
     return (
-        <div>
-            <h2>Rendered {count} times</h2>
+        <>
+            <h3>Rendered {count} times</h3>
             <Input onChange={onChange} count={count} />
-        </div>
+        </>
     );
 };
 

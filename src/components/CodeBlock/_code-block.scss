@@ -137,6 +137,21 @@
                 margin-bottom: 0.5rem;
             }
         }
+
+        button {
+            cursor: pointer;
+            align-self: baseline;
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+            color: $color-white;
+            margin-right: 1rem;
+            margin-bottom: .5rem;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 
     code * {
