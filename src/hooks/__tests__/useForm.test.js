@@ -6,20 +6,23 @@ import Api from 'api';
 jest.mock('api/Api.js', () => ({
     subscribeComments: jest.fn(),
     unsubscribeComments: jest.fn(),
-    getUsers: jest.fn().mockReturnValue(new Promise(r => {})),
-    getPosts: jest.fn().mockReturnValue(new Promise(r => {})),
+    getUsers: jest.fn(),
+    getPosts: jest.fn(),
 }));
 
+const getPendingPromise = () => new Promise(r => {});
+const getResolvingPromise = data => new Promise(r => r(data));
+const getRejectingPromise = error => new Promise((_, r) => r(error));
+
 describe('useForm', () => {
-    afterEach(() => {
+    beforeEach(() => {
         Api.subscribeComments.mockClear();
         Api.unsubscribeComments.mockClear();
         Api.getUsers.mockClear();
         Api.getPosts.mockClear();
 
-        // Restore mock promise returning
-        Api.getUsers.mockReturnValue(new Promise(r => {}));
-        Api.getPosts.mockReturnValue(new Promise(r => {}));
+        Api.getUsers.mockReturnValue(getPendingPromise());
+        Api.getPosts.mockReturnValue(getPendingPromise());
     });
 
     it('should return initial state and callbacks', () => {
@@ -59,30 +62,32 @@ describe('useForm', () => {
     });
 
     it('should add comments when Api receives new comment', () => {
-        const comment = 'Mock comment';
-        const subscriberRef = {};
+        const commentOne = 'mock-comment-1';
+        const commentTwo = 'mock-comment-2';
+        let broadcastComment;
         Api.subscribeComments.mockImplementation(subscriber => {
-            subscriberRef.current = subscriber;
+            broadcastComment = subscriber;
         });
 
         const { result } = renderHook(useForm);
-        act(() => subscriberRef.current(comment));
+        act(() => broadcastComment(commentOne));
+        act(() => broadcastComment(commentTwo));
 
-        expect(result.current.comments).toMatchObject([comment]);
+        expect(result.current.comments).toMatchObject([commentOne, commentTwo]);
     });
 
     it('should fetch users and posts from Api on mount and set results to state ', async () => {
         const users = ['user1', 'user2'];
         const posts = ['post1', 'post2'];
-        Api.getUsers.mockImplementation(() => new Promise(r => r(users)));
-        Api.getPosts.mockImplementation(() => new Promise(r => r(posts)));
+        Api.getUsers.mockReturnValue(getResolvingPromise(users));
+        Api.getPosts.mockReturnValue(getResolvingPromise(posts));
 
         expect(Api.getUsers).not.toHaveBeenCalled();
         expect(Api.getPosts).not.toHaveBeenCalled();
 
         const { result, waitForNextUpdate } = renderHook(useForm);
         expect(result.current.isLoading).toBe(true);
-        await act(() => waitForNextUpdate());
+        await act(waitForNextUpdate);
 
         expect(Api.getUsers).toHaveBeenCalled();
         expect(Api.getPosts).toHaveBeenCalled();
@@ -92,24 +97,56 @@ describe('useForm', () => {
     });
 
     it('should set user when onUserChange is called', () => {
-        const user = 'mock user';
+        const value = 'mock-user';
         const { result } = renderHook(useForm);
 
         expect(result.current.selectedUser).toBe(null);
 
-        act(() => result.current.onUserChange({ target: { value: user } }));
-        expect(result.current.selectedUser).toBe(user);
+        act(() => result.current.onUserChange({ target: { value } }));
+        expect(result.current.selectedUser).toBe(value);
     });
 
-    it.todo('should set post when onPostChange is called');
-    it.todo('should set comment when onCommentChange is called');
+    it('should set post when onPostChange is called', () => {
+        const value = 'mock-post';
+        const { result } = renderHook(useForm);
+
+        expect(result.current.selectedPost).toBe(null);
+
+        act(() => result.current.onPostChange({ target: { value } }));
+        expect(result.current.selectedPost).toBe(value);
+    });
+
+    it('should set comment when onCommentChange is called', () => {
+        const value = 'mock-comment';
+        const { result } = renderHook(useForm);
+
+        expect(result.current.comment).toBe(null);
+
+        act(() => result.current.onCommentChange({ target: { value } }));
+        expect(result.current.comment).toBe(value);
+    });
+
+    it('should set error when comment is missing and onSubmit is called', () => {
+        const { result } = renderHook(useForm);
+
+        expect(result.current.error).toBe(null);
+        act(() => result.current.onSubmit({ preventDefault: () => {} }));
+        expect(result.current.error).toBe('Comment missing');
+    });
+
+    it('should call event.preventDefault when onSubmit is called', () => {
+        const preventDefault = jest.fn();
+        const { result } = renderHook(useForm);
+
+        expect(result.current.error).toBe(null);
+        act(() => result.current.onSubmit({ preventDefault }));
+        expect(preventDefault).toHaveBeenCalled();
+    });
 
     it.todo('should reset error and comment when onUserChange is called');
     it.todo('should reset error and comment when onPostChange is called');
     it.todo('should reset error when onCommentChange is called');
 
-    it.todo('should call event.preventDefault when onSubmit is called');
-    it.todo('should set error when comment is missing and onSubmit is called');
     it.todo('should set isSending true when onSubmit is called');
     it.todo('should post form data to Api when onSubmit is called');
     it.todo('should set isSending false when form data is sent');
