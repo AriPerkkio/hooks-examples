@@ -8,11 +8,14 @@ jest.mock('api/Api.js', () => ({
     unsubscribeComments: jest.fn(),
     getUsers: jest.fn(),
     getPosts: jest.fn(),
+    postForm: jest.fn(),
 }));
+
+window.alert = jest.fn();
 
 const getPendingPromise = () => new Promise(r => {});
 const getResolvingPromise = data => new Promise(r => r(data));
-const getRejectingPromise = error => new Promise((_, r) => r(error));
+const mockEvent = { preventDefault: () => {} };
 
 describe('useForm', () => {
     beforeEach(() => {
@@ -20,9 +23,11 @@ describe('useForm', () => {
         Api.unsubscribeComments.mockClear();
         Api.getUsers.mockClear();
         Api.getPosts.mockClear();
+        Api.postForm.mockClear();
 
         Api.getUsers.mockReturnValue(getPendingPromise());
         Api.getPosts.mockReturnValue(getPendingPromise());
+        Api.postForm.mockReturnValue(getPendingPromise());
     });
 
     it('should return initial state and callbacks', () => {
@@ -58,7 +63,26 @@ describe('useForm', () => {
         expect(Api.unsubscribeComments).not.toHaveBeenCalled();
 
         unmount();
+
         expect(Api.unsubscribeComments).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call Api.unsubscribeComments with same method as Api.subscribeComments', () => {
+        let onMountListener;
+        let onUnmountListener;
+        Api.subscribeComments.mockImplementation(subscriber => {
+            onMountListener = subscriber;
+        });
+        Api.unsubscribeComments.mockImplementation(subscriber => {
+            onUnmountListener = subscriber;
+        });
+
+        const { unmount } = renderHook(useForm);
+        unmount();
+
+        expect(onMountListener).not.toBeFalsy();
+        expect(onUnmountListener).not.toBeFalsy();
+        expect(onMountListener).toBe(onUnmountListener);
     });
 
     it('should add comments when Api receives new comment', () => {
@@ -130,7 +154,7 @@ describe('useForm', () => {
         const { result } = renderHook(useForm);
 
         expect(result.current.error).toBe(null);
-        act(() => result.current.onSubmit({ preventDefault: () => {} }));
+        act(() => result.current.onSubmit(mockEvent));
         expect(result.current.error).toBe('Comment missing');
     });
 
@@ -143,11 +167,74 @@ describe('useForm', () => {
         expect(preventDefault).toHaveBeenCalled();
     });
 
-    it.todo('should reset error and comment when onUserChange is called');
-    it.todo('should reset error and comment when onPostChange is called');
-    it.todo('should reset error when onCommentChange is called');
+    it('should reset error and comment when onUserChange is called', () => {
+        const { result } = renderHook(useForm);
 
-    it.todo('should set isSending true when onSubmit is called');
-    it.todo('should post form data to Api when onSubmit is called');
-    it.todo('should set isSending false when form data is sent');
+        act(() => result.current.onSubmit(mockEvent));
+        expect(result.current.error).not.toBeFalsy();
+
+        act(() => result.current.onUserChange({ target: { value: 'new' } }));
+        expect(result.current.error).toBe(null);
+    });
+
+    it('should reset error and comment when onPostChange is called', () => {
+        const { result } = renderHook(useForm);
+
+        act(() => result.current.onSubmit(mockEvent));
+        expect(result.current.error).not.toBeFalsy();
+
+        act(() => result.current.onPostChange({ target: { value: 'new' } }));
+        expect(result.current.error).toBe(null);
+    });
+
+    it('should reset error when onCommentChange is called', () => {
+        const { result } = renderHook(useForm);
+
+        act(() => result.current.onSubmit(mockEvent));
+        expect(result.current.error).not.toBeFalsy();
+
+        act(() => result.current.onCommentChange({ target: { value: 'new' } }));
+        expect(result.current.error).toBe(null);
+    });
+
+    it('should set isSending true when onSubmit is called', () => {
+        const { result } = renderHook(useForm);
+        act(() => result.current.onCommentChange({ target: { value: 'new' } }));
+
+        expect(result.current.isSending).toBe(false);
+        act(() => result.current.onSubmit(mockEvent));
+        expect(result.current.isSending).toBe(true);
+    });
+
+    it('should post form data to Api when onSubmit is called', () => {
+        const user = 'mock-user';
+        const post = 'mock-post';
+        const comment = 'mock-comment';
+
+        const { result } = renderHook(useForm);
+        act(() => result.current.onUserChange({ target: { value: user } }));
+        act(() => result.current.onPostChange({ target: { value: post } }));
+        act(() =>
+            result.current.onCommentChange({ target: { value: comment } })
+        );
+
+        act(() => result.current.onSubmit(mockEvent));
+        expect(Api.postForm).toHaveBeenCalledWith({
+            user,
+            post,
+            comment,
+        });
+    });
+
+    it('should set isSending false when form data is sent', async () => {
+        Api.postForm.mockReturnValue(getResolvingPromise('mock-data'));
+        const { result, waitForNextUpdate } = renderHook(useForm);
+
+        act(() => result.current.onCommentChange({ target: { value: 'new' } }));
+        act(() => result.current.onSubmit(mockEvent));
+        expect(result.current.isSending).toBe(true);
+
+        await act(waitForNextUpdate);
+        expect(result.current.isSending).toBe(false);
+    });
 });

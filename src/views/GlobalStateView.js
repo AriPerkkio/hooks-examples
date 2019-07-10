@@ -5,6 +5,7 @@ import { CodeBlockButton } from 'components/CodeBlock';
 import Button from 'components/common/Button';
 import { InputWithStore, InputWithShouldUpdate } from 'components/Input';
 import { listeners } from 'hooks/useStore';
+import { useForceRender } from 'hooks';
 
 const GlobalStateView = () => {
     const [visible, toggleVisible] = useReducer(s => !s, true);
@@ -52,12 +53,11 @@ const GlobalStateView = () => {
 };
 
 const Listeners = () => {
-    const [, forceRender] = useReducer(s => s + 1, 0);
+    useForceRender(1000);
 
     return (
         <>
             <h2>Listeners</h2>
-            <Button onClick={forceRender}>Refresh</Button>
             <Stringify>{listeners.length}</Stringify>
         </>
     );
