@@ -175,12 +175,12 @@
     }
 
     &-btn--submit {
+        cursor: pointer;
         align-self: flex-end;
         border-radius: 1rem;
         border: 0;
         outline: 0;
         box-shadow: 0 .2rem .3rem rgba($color-white, .1);
-        margin-top: 2rem;
         padding: .4rem 2rem;
         background-color: rgba($color-white, .1);
         color: $color-white;

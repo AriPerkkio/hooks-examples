@@ -33,7 +33,10 @@ const useForm = () => {
         setState({ selectedUser: value, ...resetCommentAndError });
 
     const onPostChange = ({ target: { value } }) =>
-        setState({ selectedPost: value, ...resetCommentAndError });
+        setState(prev => ({
+            selectedPost: value === prev.selectedPost ? null : value,
+            ...resetCommentAndError,
+        }));
 
     const onCommentChange = ({ target: { value } }) =>
         setState({ comment: value, error: null });

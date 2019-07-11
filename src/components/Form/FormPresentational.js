@@ -2,25 +2,22 @@ import React from 'react';
 
 import Stringify from 'components/Stringify';
 import Form, { PostList, CommentInput } from './Form';
-import { useForm } from 'hooks';
 
-const FormWithHooks = () => {
-    const {
-        onUserChange,
-        onPostChange,
-        onCommentChange,
-        onSubmit,
-        selectedUser,
-        selectedPost,
-        comment,
-        error,
-        users,
-        posts,
-        comments,
-        isLoading,
-        isSending,
-    } = useForm();
-
+const FormPresentational = ({
+    onUserChange,
+    onPostChange,
+    onCommentChange,
+    onSubmit,
+    selectedUser,
+    selectedPost,
+    comment,
+    error,
+    users,
+    posts,
+    comments,
+    isLoading,
+    isSending,
+}) => {
     if (isLoading) {
         return <div className='form--loading'>Loading...</div>;
     }
@@ -70,4 +67,4 @@ const FormWithHooks = () => {
     );
 };
 
-export default FormWithHooks;
+export default FormPresentational;

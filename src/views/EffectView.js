@@ -8,6 +8,8 @@ import { ApiSubscribers } from 'api';
 
 const toggle = s => !s;
 
+// TODO useRef usage on custom hook example
+
 const EffectView = () => {
     const [visibleOne, toggleVisibilityOne] = useReducer(toggle, false);
     const [visibleTwo, toggleVisibilityTwo] = useReducer(toggle, false);
