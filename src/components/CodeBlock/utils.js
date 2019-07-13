@@ -4,15 +4,16 @@ const REGEX_STRINGIFY = /\n\s*<Stringify(\s|\S)*>(\s|\S)*<\/Stringify>/g;
 const REGEX_CODEBLOCKBUTTON = /\n\s*<CodeBlockButton(\s|\w|[='/.])*>/g;
 const REGEX_FRAGMENT = /(\s*) (<>|<\/>)/g;
 const REGEX_EMPTY_DIV = /\n\s*<div>\s*<\/div>/g;
-const REGEX_RETURN = /(return \(\n)(\s\S*)+(\))/gs;
+const REGEX_FRAGMENT_CONTENT = /<>(\s|\S)*<\/>/gs;
 const REGEX_INDENT = /( ){4}/g;
 const REGEX_NEWLINE_INDENT = /\n( ){4}/g;
-const REGEX_CLOSING_BRACKET = /\)/g;
+const REGEX_CLOSING_BRACKET = /\);/g;
 const REGEX_PRETTIER_IGNORE = /\n\s*\/\/ prettier-ignore/g;
+const REGEX_ESLINT_IGNORE = /\n\s*\/\/ eslint-disable-next-line/g;
 const REGEX_DOUBLE_NEWLINES = /\n\n\n/g;
 
-const removePrettierIgnoreComments = code =>
-    code.replace(REGEX_PRETTIER_IGNORE, '\n');
+const removePrettierAndEslintIgnoreComments = code =>
+    code.replace(REGEX_PRETTIER_IGNORE, '\n').replace(REGEX_ESLINT_IGNORE, '');
 
 const decreaseIndent = indent => code =>
     code.replace(REGEX_INDENT, ' '.repeat(indent));
@@ -20,15 +21,15 @@ const decreaseIndent = indent => code =>
 const decreaseNewlineIndent = code =>
     code
         .replace(REGEX_NEWLINE_INDENT, '\n')
-        .replace(REGEX_CLOSING_BRACKET, '    )');
+        .replace(REGEX_CLOSING_BRACKET, '    );');
 
 const removeStringify = code =>
     code.replace(REGEX_STRINGIFY, '').replace(REGEX_STRINGIFY_IMPORT, '');
 
 const removeFragment = code =>
     code
-        .replace(REGEX_FRAGMENT, '')
-        .replace(REGEX_RETURN, decreaseNewlineIndent);
+        .replace(REGEX_FRAGMENT_CONTENT, decreaseNewlineIndent)
+        .replace(REGEX_FRAGMENT, '');
 
 const removeCodeBlockButton = code =>
     code
@@ -46,7 +47,8 @@ const formatCodes = (codes, options) => {
         options.hideFragment && removeFragment,
         options.hideCodeBlockBtn && removeCodeBlockButton,
         decreaseIndent(options.indent),
-        removePrettierIgnoreComments,
+        removePrettierAndEslintIgnoreComments,
+
         removeEmptyDivs,
         removeDoubleNewlines,
     ].filter(Boolean);

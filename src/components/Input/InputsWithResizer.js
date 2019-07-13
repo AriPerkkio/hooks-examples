@@ -5,6 +5,7 @@ import { useWindowResize } from 'hooks';
 const InputsWithResizer = () => {
     const [displayMode, setDisplayMode] = useState('medium');
 
+    // No need to memoize callback
     useWindowResize(width => setDisplayMode(width > 1400 ? 'large' : 'medium'));
 
     return (

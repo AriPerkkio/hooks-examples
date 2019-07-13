@@ -8,14 +8,16 @@ import { generateText, generateTextCallCounts } from 'utils';
  */
 const RenderCountWithUseMemo = ({ text }) => {
     // Generate on every render
+    // eslint-disable-next-line
     const calculatedText = generateText(text, 'inline');
 
     // Generate only when text changes
+    // eslint-disable-next-line
     const memoizedText = useMemo(() => generateText(text, 'useMemo'), [text]);
 
     return (
         <Stringify className='block small' indent={2}>
-            {{ generateTextCallCounts, calculatedText, memoizedText }}
+            {{ generateTextCallCounts }}
         </Stringify>
     );
 };
