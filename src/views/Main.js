@@ -12,14 +12,6 @@ const Main = () => (
                 Source codes
             </a>
         </h2>
-        <h2>
-            <a
-                href='http://aperkkio.s3-website-us-east-1.amazonaws.com'
-                target='_blank'
-                rel='noopener noreferrer'>
-                Try sandbox
-            </a>
-        </h2>
     </>
 );
 

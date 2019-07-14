@@ -18,6 +18,11 @@ const CodeBlock = () => {
     const { codes, toggleCodes, resetCodes } = useContext(CodeBlockContext);
     const [options, setOptions] = useReducer(mergeReducer, initialOptions);
 
+    const onReset = () => {
+        resetCodes();
+        setOptions(initialOptions);
+    };
+
     useWindowResize(width => {
         setOptions(resolveFontSize(width));
 
@@ -53,7 +58,7 @@ const CodeBlock = () => {
             <CodeBlockOptions
                 values={options}
                 onChange={setOptions}
-                onReset={resetCodes}
+                onReset={onReset}
             />
 
             <div className={containerClassNames}>
