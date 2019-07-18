@@ -8,3 +8,6 @@ export { default as InputWithEventTarget } from './InputWithEventTarget';
 export {
     default as InputWithPropsDependencies,
 } from './InputWithPropsDependencies';
+export {
+    default as InputWithReducerAndProps,
+} from './InputWithReducerAndProps';

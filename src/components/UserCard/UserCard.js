@@ -7,9 +7,8 @@ const UserCardInvalidDependencies = ({ userId }) => {
     const { username, name, email } = user || {};
 
     useEffect(() => {
-        setUser(); // Reset previous
-
         Api.getUser(userId).then(setUser);
+        return setUser; // Reset previous user
     }, [userId]);
 
     if (!user) {

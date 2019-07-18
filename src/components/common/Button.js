@@ -11,7 +11,11 @@ const Button = ({ className, onClick, ...props }) => {
     return (
         <button
             {...props}
-            className={classNames('common-button', toggled && 'toggled')}
+            className={classNames(
+                'common-button',
+                className,
+                toggled && 'toggled'
+            )}
             onClick={_onClick}>
             {props.children}
         </button>

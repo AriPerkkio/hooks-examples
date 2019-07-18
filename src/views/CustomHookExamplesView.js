@@ -29,6 +29,17 @@ const CustomHookExamplesView = () => {
                 text='InputWithEventTarget.js'
             />
             <InputWithEventTarget />
+
+            <h2 className='margin-top-m'>isMounted, useRedcerOnMounted</h2>
+            <CodeBlockButton
+                fileName='hooks/useIsMounted.js'
+                text='useIsMounted.js'
+            />
+
+            <CodeBlockButton
+                fileName='hooks/useReducerOnMounted.js'
+                text='useReducerOnMounted.js'
+            />
         </>
     );
 };
