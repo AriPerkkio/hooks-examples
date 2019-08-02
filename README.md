@@ -10,4 +10,4 @@
 - Custom hooks: Unit testing
 - Custom hooks: Yet another global state management solution
 
-## [Project running at s3](http://aperkkio.s3-website-us-east-1.amazonaws.com)
+## [Try examples](https://ariperkkio.github.io/hooks-examples/)
