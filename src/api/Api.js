@@ -24,6 +24,20 @@ class Api {
         return fetch(`${this.baseUrl}/users/${id}`).then(r => r.json());
     }
 
+    async getUsersPosts(id) {
+        await delay(2000);
+
+        return fetch(`${this.baseUrl}/users/${id}/posts`).then(r => r.json());
+    }
+
+    async getUsersComments(id) {
+        await delay(2000);
+
+        return fetch(`${this.baseUrl}/users/${id}/comments`).then(r =>
+            r.json()
+        );
+    }
+
     async getPosts() {
         await delay(2000);
 

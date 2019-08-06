@@ -1,45 +1,79 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 
 import Stringify from 'components/Stringify';
 import Button from 'components/common/Button';
+import Api from 'api';
 
-const initialState = 0;
+const InputWithReducerAndProps = ({ userId }) => {
+    const [state, dispatch] = useReducer(reducer, {});
 
-const InputWithReducerAndProps = ({ multiplier }) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
-
-    function reducer(state, action) {
-        const { type, value } = action;
+    function reducer(prevState, action) {
+        const { type, payload } = action || {};
 
         switch (type) {
-            case 'ADD':
-                return state + value * multiplier;
-            case 'MINUS':
-                return state - value * multiplier;
-            case 'RESET':
-                return 0;
+            case 'GET_POSTS':
+                return {
+                    ...prevState,
+                    loading: false,
+                    [userId]: {
+                        ...prevState[userId],
+                        posts: `Post count: ${payload.length}`,
+                    },
+                };
+            case 'GET_COMMENTS':
+                return {
+                    ...prevState,
+                    loading: false,
+                    [userId]: {
+                        ...prevState[userId],
+                        comments: `Comment count: ${payload.length}`,
+                    },
+                };
+            case 'LOADING':
+                return { ...prevState, loading: true };
             default:
-                return state;
+                return prevState;
         }
     }
 
-    useEffect(() => {
-        if (state > 1000 && multiplier > 10) {
-            dispatch({ type: 'RESET' });
+    const thunkDispatch = async action => {
+        if (typeof action === 'function') {
+            action().then(r => dispatch(r));
+            return dispatch({ type: 'LOADING' });
         }
-    }, [multiplier, state]);
+
+        return dispatch(action);
+    };
 
     return (
         <>
-            <Button onClick={() => dispatch({ type: 'ADD', value: 15 })}>
-                ADD 15
+            <Button
+                onClick={() =>
+                    thunkDispatch(() =>
+                        Api.getUsersPosts(userId).then(payload => ({
+                            payload,
+                            type: 'GET_POSTS',
+                        }))
+                    )
+                }>
+                GET /users/{userId}/posts
             </Button>
 
-            <Button onClick={() => dispatch({ type: 'MINUS', value: 23 })}>
-                MINUS 23
+            <Button
+                onClick={() =>
+                    thunkDispatch(() =>
+                        Api.getUsersComments(userId).then(payload => ({
+                            payload,
+                            type: 'GET_COMMENTS',
+                        }))
+                    )
+                }>
+                GET /users/{userId}/comments
             </Button>
 
-            <Stringify>{state}</Stringify>
+            <Stringify indent={2} className='block'>
+                {state}
+            </Stringify>
         </>
     );
 };

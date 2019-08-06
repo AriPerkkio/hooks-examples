@@ -22,10 +22,7 @@ const EffectView = () => {
             <h1>useEffect</h1>
 
             <h2>useEffect: onMount & onUnmount</h2>
-            <CodeBlockButton
-                fileName='components/Text/TextWithSubscription.js'
-                text='TextWithSubscription.js'
-            />
+            <CodeBlockButton fileName='components/Text/TextWithSubscription.js' />
             <Button onClick={toggleVisibilityOne}>
                 {visibleOne ? 'Unmount' : 'Mount'}
             </Button>
@@ -83,7 +80,7 @@ const EffectView = () => {
             />
             <CodeBlockButton
                 fileName='components/Text/TextWithEffectsList.js'
-                text='TextWithEffectsList.js'
+                text='Code: Order of effects and cleanups'
             />
             <Button onClick={toggleVisibilityFour}>
                 {visibleFour ? 'Unmount' : 'Mount'}

@@ -7,7 +7,7 @@ const Posts = ({ posts, setPosts }) => {
         Api.getPosts().then(setPosts);
     }, [setPosts]);
 
-    return <section>Posts: {(posts || []).length}</section>;
+    return <section className='posts'>Posts: {(posts || []).length}</section>;
 };
 
 export default Posts;

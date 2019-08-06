@@ -14,7 +14,6 @@ jest.mock('api/Api.js', () => ({
 window.alert = jest.fn();
 
 const getPendingPromise = () => new Promise(r => {});
-const getResolvingPromise = data => new Promise(r => r(data));
 const mockEvent = { preventDefault: () => {} };
 
 describe('useForm', () => {
@@ -103,8 +102,8 @@ describe('useForm', () => {
     it('should fetch users and posts from Api on mount and set results to state ', async () => {
         const users = ['user1', 'user2'];
         const posts = ['post1', 'post2'];
-        Api.getUsers.mockReturnValue(getResolvingPromise(users));
-        Api.getPosts.mockReturnValue(getResolvingPromise(posts));
+        Api.getUsers.mockResolvedValue(users);
+        Api.getPosts.mockResolvedValue(posts);
 
         expect(Api.getUsers).not.toHaveBeenCalled();
         expect(Api.getPosts).not.toHaveBeenCalled();
@@ -227,7 +226,7 @@ describe('useForm', () => {
     });
 
     it('should set isSending false when form data is sent', async () => {
-        Api.postForm.mockReturnValue(getResolvingPromise('mock-data'));
+        Api.postForm.mockResolvedValue('mock-data');
         const { result, waitForNextUpdate } = renderHook(useForm);
 
         act(() => result.current.onCommentChange({ target: { value: 'new' } }));

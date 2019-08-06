@@ -4,7 +4,7 @@ import Stringify from 'components/Stringify';
 import { useEventTargetValue } from 'hooks';
 
 const InputWithEventTarget = () => {
-    const [value, setValue] = useEventTargetValue('Initial value');
+    const [value, onChange] = useEventTargetValue('Initial value');
 
     return (
         <>
@@ -12,7 +12,7 @@ const InputWithEventTarget = () => {
                 type='text'
                 className='common-input block'
                 value={value}
-                onChange={setValue}
+                onChange={onChange}
             />
             <Stringify>{value}</Stringify>
         </>

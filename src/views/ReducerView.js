@@ -5,7 +5,7 @@ import { useEventTargetValue } from 'hooks';
 import { CodeBlockButton } from 'components/CodeBlock';
 
 const ReducerView = () => {
-    const [value, onChange] = useEventTargetValue(10);
+    const [value, onChange] = useEventTargetValue(1);
 
     return (
         <>
@@ -14,6 +14,7 @@ const ReducerView = () => {
             <CodeBlockButton
                 className='block'
                 fileName='components/Input/InputWithReducer.js'
+                text='useReducer'
             />
 
             <h2>useReducer accessing props easily</h2>
@@ -24,10 +25,11 @@ const ReducerView = () => {
                 value={value}
                 onChange={onChange}
             />
-            <InputWithReducerAndProps multiplier={value} />
+            <InputWithReducerAndProps userId={value} />
             <CodeBlockButton
                 className='block'
                 fileName='components/Input/InputWithReducerAndProps.js'
+                text='New reducer on each render'
             />
         </>
     );

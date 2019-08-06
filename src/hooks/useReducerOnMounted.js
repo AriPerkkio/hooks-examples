@@ -8,7 +8,7 @@ const useReducerOnMounted = (...args) => {
 
     const useDispatchOnMounted = useCallback(
         (...args) => {
-            isMounted && dispatch(...args);
+            isMounted.current && dispatch(...args);
         },
         [isMounted]
     );

@@ -23,7 +23,7 @@ const getMockedUseForm = (args = {}) => ({
     posts: [{ userId: 'mock-selectedUser', id: 'mock-selectedPost' }],
     comments: [{ postId: 'mock-selectedPost' }],
     isLoading: false,
-    isSending: 'isSending',
+    isSending: 'mock-isSending',
     onUserChange: 'mock-onUserChange',
     onPostChange: 'mock-onPostChange',
     onCommentChange: 'mock-onCommentChange',
@@ -69,7 +69,7 @@ describe('<FormWithHooks />', () => {
                   <CommentInput
                     error="mock-error"
                     isOpen={true}
-                    isSending="isSending"
+                    isSending="mock-isSending"
                     onChange="mock-onCommentChange"
                     onSubmit="mock-onSubmit"
                   />

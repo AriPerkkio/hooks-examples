@@ -18,7 +18,6 @@ const createStore = () => {
     const useStore = (options = {}) => {
         const [, render] = useReducer(s => s + 1, 0);
 
-        // Add listener once
         useEffect(() => {
             const listener = {
                 render,
@@ -27,7 +26,6 @@ const createStore = () => {
 
             listeners.push(listener);
 
-            // Remove when unmounted
             return () => listeners.splice(listeners.indexOf(listener), 1);
         }, [options]);
 
