@@ -7,18 +7,18 @@ const LocalStateView = () => (
     <>
         <h1>Local State</h1>
 
-        <h2>InputWithComponents</h2>
+        <h2>Component</h2>
         <InputWithComponents />
         <CodeBlockButton
             fileName='components/Input/InputWithComponents.js'
             text="Component's state"
         />
 
-        <h2>InputWithHooks</h2>
+        <h2>Hook</h2>
         <InputWithHooks />
         <CodeBlockButton
             fileName='components/Input/InputWithHooks.js'
-            text="Hook's state"
+            text='Hook state'
         />
     </>
 );

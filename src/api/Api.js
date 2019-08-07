@@ -1,3 +1,5 @@
+import { delay } from 'utils';
+
 class Api {
     baseUrl = 'https://jsonplaceholder.typicode.com';
     subscribers = [];
@@ -75,7 +77,5 @@ class Api {
         }, 2000);
     }
 }
-
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export default new Api();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import Stringify from 'components/Stringify';
 import Button from 'components/common/Button';
@@ -16,4 +16,4 @@ const InputWithStore = ({ id }) => {
     );
 };
 
-export default InputWithStore;
+export default memo(InputWithStore);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import Stringify from 'components/Stringify';
 import Button from 'components/common/Button';
@@ -20,4 +20,4 @@ const InputWithShouldUpdate = ({ id }) => {
     );
 };
 
-export default InputWithShouldUpdate;
+export default memo(InputWithShouldUpdate);

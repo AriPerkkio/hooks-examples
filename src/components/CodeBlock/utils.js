@@ -11,6 +11,7 @@ const REGEX_CLOSING_BRACKET = /\);/g;
 const REGEX_PRETTIER_IGNORE = /\n\s*\/\/ prettier-ignore/g;
 const REGEX_ESLINT_IGNORE = /\n\s*\/\/ eslint-disable-next-line/g;
 const REGEX_DOUBLE_NEWLINES = /\n\n\n/g;
+const REGEX_HIDE_LINE = /\n( |\S)*\/\/ hide-line/;
 
 const removePrettierAndEslintIgnoreComments = code =>
     code.replace(REGEX_PRETTIER_IGNORE, '\n').replace(REGEX_ESLINT_IGNORE, '');
@@ -41,6 +42,8 @@ const removeEmptyDivs = code => code.replace(REGEX_EMPTY_DIV, '');
 const removeDoubleNewlines = code =>
     code.replace(REGEX_DOUBLE_NEWLINES, '\n\n');
 
+const removeHiddenLines = code => code.replace(REGEX_HIDE_LINE, '');
+
 const formatCodes = (codes, options) => {
     const formatters = [
         options.hideStringify && removeStringify,
@@ -48,9 +51,9 @@ const formatCodes = (codes, options) => {
         options.hideCodeBlockBtn && removeCodeBlockButton,
         decreaseIndent(options.indent),
         removePrettierAndEslintIgnoreComments,
-
         removeEmptyDivs,
         removeDoubleNewlines,
+        removeHiddenLines,
     ].filter(Boolean);
 
     const format = code =>

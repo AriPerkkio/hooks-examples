@@ -21,7 +21,7 @@ const EffectView = () => {
         <>
             <h1>useEffect</h1>
 
-            <h2>useEffect: onMount & onUnmount</h2>
+            <h2>onMount & onUnmount</h2>
             <CodeBlockButton fileName='components/Text/TextWithSubscription.js' />
             <Button onClick={toggleVisibilityOne}>
                 {visibleOne ? 'Unmount' : 'Mount'}
@@ -31,7 +31,7 @@ const EffectView = () => {
                 {visibleOne && <TextWithSubscription />}
             </div>
 
-            <h2 className='margin-top-l'>useEffect: Dependency array</h2>
+            <h2 className='margin-top-l'>Dependency array</h2>
             <input
                 type='number'
                 className='common-input block margin-top-m'

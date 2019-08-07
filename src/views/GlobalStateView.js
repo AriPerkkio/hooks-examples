@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 
-import Stringify from 'components/Stringify';
 import { CodeBlockButton } from 'components/CodeBlock';
 import Button from 'components/common/Button';
 import { InputWithStore, InputWithShouldUpdate } from 'components/Input';
@@ -53,14 +52,9 @@ const GlobalStateView = () => {
 };
 
 const Listeners = () => {
-    useForceRender(1000);
+    useForceRender(500);
 
-    return (
-        <>
-            <h2>Listeners</h2>
-            <Stringify>{listeners.length}</Stringify>
-        </>
-    );
+    return <h2>Listeners {listeners.length}</h2>;
 };
 
 export default GlobalStateView;

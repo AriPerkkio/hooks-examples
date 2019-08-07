@@ -15,14 +15,12 @@ const createStore = () => {
         listeners.forEach(updateListener(prevStore, store));
     };
 
-    const useStore = (options = {}) => {
-        const [, render] = useReducer(s => s + 1, 0);
+    const useStore = options => {
+        const [, render] = useReducer(s => !s, true);
 
         useEffect(() => {
-            const listener = {
-                render,
-                shouldComponentUpdate: options.shouldComponentUpdate,
-            };
+            const { shouldComponentUpdate } = options || {};
+            const listener = { render, shouldComponentUpdate };
 
             listeners.push(listener);
 

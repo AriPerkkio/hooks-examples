@@ -2,6 +2,7 @@ import React from 'react';
 
 import { InputsWithResizer, InputWithEventTarget } from 'components/Input';
 import { CodeBlockButton } from 'components/CodeBlock';
+import Link from 'components/Link';
 
 const CustomHookExamplesView = () => {
     return (
@@ -40,6 +41,9 @@ const CustomHookExamplesView = () => {
                 fileName='hooks/useReducerOnMounted.js'
                 text='useReducerOnMounted.js'
             />
+
+            <h3>More examples</h3>
+            <Link href='https://usehooks.com/'>useHooks.com</Link>
         </>
     );
 };
