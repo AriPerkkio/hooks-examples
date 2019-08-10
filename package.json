@@ -6,27 +6,27 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "core-js": "^3.1.4",
-    "react": "^16.9.0-alpha.0",
+    "react": "^16.9.0",
     "react-app-polyfill": "^1.0.1",
-    "react-dom": "^16.9.0-alpha.0",
+    "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.0",
+    "react-scripts": "3.1.0",
     "react-syntax-highlighter": "^10.3.0"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^1.0.4",
+    "@testing-library/react-hooks": "^2.0.1",
     "@types/jest": "^24.0.13",
     "body-parser": "^1.19.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
-    "eslint": "^5.16.0",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "gh-pages": "2.0.1",
     "node-sass": "^4.12.0",
-    "prettier": "^1.17.1",
-    "react-test-renderer": "^16.9.0-alpha.0"
+    "prettier": "^1.18.2",
+    "react-test-renderer": "^16.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
