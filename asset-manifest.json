@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/hooks-examples/static/css/main.11150d4a.chunk.css",
+    "main.css": "/hooks-examples/static/css/main.c4c2b9c1.chunk.css",
     "main.js": "/hooks-examples/static/js/main.d6566dba.chunk.js",
     "main.js.map": "/hooks-examples/static/js/main.d6566dba.chunk.js.map",
     "runtime~main.js": "/hooks-examples/static/js/runtime~main.7e690c82.js",
@@ -30,8 +30,8 @@
     "static/js/13.fe8835b5.chunk.js": "/hooks-examples/static/js/13.fe8835b5.chunk.js",
     "static/js/13.fe8835b5.chunk.js.map": "/hooks-examples/static/js/13.fe8835b5.chunk.js.map",
     "index.html": "/hooks-examples/index.html",
-    "precache-manifest.0491a9443959bce5a5eb0e543d746fb1.js": "/hooks-examples/precache-manifest.0491a9443959bce5a5eb0e543d746fb1.js",
+    "precache-manifest.2446b109b1709621cc813b8d79e7d184.js": "/hooks-examples/precache-manifest.2446b109b1709621cc813b8d79e7d184.js",
     "service-worker.js": "/hooks-examples/service-worker.js",
-    "static/css/main.11150d4a.chunk.css.map": "/hooks-examples/static/css/main.11150d4a.chunk.css.map"
+    "static/css/main.c4c2b9c1.chunk.css.map": "/hooks-examples/static/css/main.c4c2b9c1.chunk.css.map"
   }
 }
