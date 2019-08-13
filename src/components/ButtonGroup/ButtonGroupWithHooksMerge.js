@@ -16,7 +16,6 @@ const ButtonGroupWithHooksMerge = () => {
 
     return (
         <>
-            <h3>With merge</h3>
             <Button onClick={onLeftClick}>Left</Button>
             <Button onClick={onRightClick}>Right</Button>
 
