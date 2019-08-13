@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1fb5dd78b31f2b6e88e7d1af28900710",
+    "revision": "db5f5318a1d38ff492c7905824c9eb8c",
     "url": "/hooks-examples/index.html"
   },
   {
-    "revision": "21564021b7cdca0d8413",
-    "url": "/hooks-examples/static/css/main.db5f4e19.chunk.css"
+    "revision": "70074108db2cfe189b31",
+    "url": "/hooks-examples/static/css/main.c4c2b9c1.chunk.css"
   },
   {
     "revision": "7eca111a939927e4e98e",
@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hooks-examples/static/js/11.031a9634.chunk.js"
   },
   {
-    "revision": "fd675fbf303134121135",
-    "url": "/hooks-examples/static/js/12.44e54d5a.chunk.js"
+    "revision": "cc92512bd6b8f37159c8",
+    "url": "/hooks-examples/static/js/12.08318c0c.chunk.js"
   },
   {
     "revision": "5158741d07612769895c",
     "url": "/hooks-examples/static/js/13.fe8835b5.chunk.js"
   },
   {
-    "revision": "2d6d980a5e4f2f8e34d6",
-    "url": "/hooks-examples/static/js/2.4d44b482.chunk.js"
+    "revision": "9668837a05bf77359e61",
+    "url": "/hooks-examples/static/js/2.9e3c0391.chunk.js"
   },
   {
-    "revision": "68e56805f0be9d32cfe5",
-    "url": "/hooks-examples/static/js/3.4da7f953.chunk.js"
+    "revision": "dcccd0167a7cbbcca9d1",
+    "url": "/hooks-examples/static/js/3.7a4dd200.chunk.js"
   },
   {
     "revision": "1d8c99851f48e9d97df7",
@@ -48,19 +48,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hooks-examples/static/js/7.a23ebd97.chunk.js"
   },
   {
-    "revision": "5804ea9862078f2388e1",
-    "url": "/hooks-examples/static/js/8.6918a7e0.chunk.js"
+    "revision": "9cf99fd18e1996ad453d",
+    "url": "/hooks-examples/static/js/8.2f6ef8b3.chunk.js"
   },
   {
-    "revision": "9e2ea81d914ac7228b38",
-    "url": "/hooks-examples/static/js/9.1cc603ca.chunk.js"
+    "revision": "fc9a68d71c8c0e8438a1",
+    "url": "/hooks-examples/static/js/9.ba8355a4.chunk.js"
   },
   {
-    "revision": "21564021b7cdca0d8413",
-    "url": "/hooks-examples/static/js/main.d6566dba.chunk.js"
+    "revision": "70074108db2cfe189b31",
+    "url": "/hooks-examples/static/js/main.2c45cb58.chunk.js"
   },
   {
-    "revision": "319db693bc7b38121cea",
-    "url": "/hooks-examples/static/js/runtime~main.7e690c82.js"
+    "revision": "ff568263cd9bcd6d34bb",
+    "url": "/hooks-examples/static/js/runtime~main.a0a709fb.js"
   }
 ]);
