@@ -18,7 +18,7 @@ const TextWithEffectsList = ({ id }) => {
     }, [id]);
 
     return (
-        <ul className='text-effects-list'>
+        <ul className='text-effects-list block'>
             {list.map((text, key) => (
                 <li key={key}>{text}</li>
             ))}

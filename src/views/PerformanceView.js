@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 
 import {
     RenderCountWithUseCallback,
@@ -7,7 +7,7 @@ import {
     RenderCountWithClass,
 } from 'components/RenderCountText';
 import { InputWithPropsDependencies } from 'components/Input';
-import Button from 'components/common/Button';
+import MountToggle from 'components/MountToggle';
 import { CodeBlockButton } from 'components/CodeBlock';
 import { useForceRender } from 'hooks';
 
@@ -16,7 +16,6 @@ const PerformanceView = () => {
     const [cbText, setCbText] = useState('useCallback text');
     const [cbRefText, setCbRefText] = useState('useCallback+useRef text');
     const [memoText, setMemoText] = useState('initial text');
-    const [memoCbMounted, toggleMemoCbMount] = useReducer(s => !s, false);
 
     useForceRender(2000);
 
@@ -61,11 +60,11 @@ const PerformanceView = () => {
             <RenderCountWithUseMemo text={memoText} />
 
             <h3>Dependency memoizing</h3>
-            <Button onClick={toggleMemoCbMount}>
-                {memoCbMounted ? 'Unmount' : 'Mount'}
-            </Button>
             <CodeBlockButton fileName='components/Input/InputWithPropsDependencies.js' />
-            {memoCbMounted && <InputWithPropsDependencies />}
+
+            <MountToggle>
+                <InputWithPropsDependencies />
+            </MountToggle>
         </>
     );
 };

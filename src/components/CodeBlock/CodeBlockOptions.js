@@ -5,7 +5,7 @@ const BASE_CLASS = 'code-block-options';
 const initialOptions = {
     hideFragment: false,
     hideStringify: false,
-    hideCodeBlockBtn: false,
+    hideCodeBlockBtn: true,
     fullScreen: false,
     indent: 4,
     fontSize: 16,
