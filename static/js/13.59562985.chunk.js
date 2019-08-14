@@ -1,2 +1,2 @@
 (window["webpackJsonphooks-examples"]=window["webpackJsonphooks-examples"]||[]).push([[13],{430:function(e,t,o){"use strict";o.r(t);var s=o(0),a=o.n(s),m=o(55);t.default=function(){return a.a.createElement(a.a.Fragment,null,a.a.createElement("h1",null,"Unit testing custom hook"),a.a.createElement(m.a,{fileName:"hooks/useForm.js",text:"useForm.js"}),a.a.createElement(m.a,{fileName:"hooks/__tests__/useForm.test.js",text:"useForm.test.js"}),a.a.createElement("div",null,a.a.createElement(m.a,{fileName:"components/Form/FormWithHooks.js",text:"FormWithHooks.js"}),a.a.createElement(m.a,{fileName:"components/Form/__tests__/FormWithHooks.test.js",text:"FormWithHooks.test.js"})))}}}]);
-//# sourceMappingURL=13.db43b483.chunk.js.map
+//# sourceMappingURL=13.59562985.chunk.js.map
