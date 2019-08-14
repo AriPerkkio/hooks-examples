@@ -11,9 +11,7 @@ const UserCardInvalidDependencies = ({ userId }) => {
         return setUser; // Reset previous user
     }, [userId]);
 
-    if (!user) {
-        return <h2>Loading...</h2>;
-    }
+    if (!user) return <h2>Loading...</h2>;
 
     return (
         <div>

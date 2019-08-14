@@ -15,6 +15,11 @@
         }
     }
 
+    &-text {
+        color: $color-white;
+        font-size: 1.85rem;
+    }
+
     &-button {
         cursor: pointer;
         color: $color-white;

@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { InputWithComponents, InputWithHooks } from 'components/Input';
+import {
+    InputWithComponents,
+    InputWithHooks,
+    InputWithHooksLazyInitialState,
+} from 'components/Input';
 import { CodeBlockButton } from 'components/CodeBlock';
 
 const LocalStateView = () => (
@@ -20,6 +24,14 @@ const LocalStateView = () => (
             fileName='components/Input/InputWithHooks.js'
             text='Hook state'
         />
+
+        <div>
+            <InputWithHooksLazyInitialState />
+            <CodeBlockButton
+                fileName='components/Input/InputWithHooksLazyInitialState.js'
+                text='Lazy initial state'
+            />
+        </div>
     </>
 );
 

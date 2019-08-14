@@ -11,3 +11,6 @@ export {
 export {
     default as InputWithReducerAndProps,
 } from './InputWithReducerAndProps';
+export {
+    default as InputWithHooksLazyInitialState,
+} from './InputWithHooksLazyInitialState';

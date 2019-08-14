@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useCallback } from 'react';
+import { useReducer, useEffect } from 'react';
 
 import Api from 'api';
 
@@ -41,12 +41,6 @@ const useForm = () => {
     const onCommentChange = ({ target: { value } }) =>
         setState({ comment: value, error: null });
 
-    const onCommentsUpdate = useCallback(
-        comment =>
-            setState(({ comments }) => ({ comments: [...comments, comment] })),
-        []
-    );
-
     const onSubmit = e => {
         e.preventDefault();
 
@@ -68,6 +62,9 @@ const useForm = () => {
     };
 
     useEffect(() => {
+        const onCommentsUpdate = comment =>
+            setState(({ comments }) => ({ comments: [...comments, comment] }));
+
         Api.subscribeComments(onCommentsUpdate);
 
         setState({ isLoading: true });
@@ -81,7 +78,7 @@ const useForm = () => {
         );
 
         return () => Api.unsubscribeComments(onCommentsUpdate);
-    }, [onCommentsUpdate]);
+    }, []);
 
     return {
         ...state,

@@ -33,7 +33,7 @@ const getMockedUseForm = (args = {}) => ({
 
 describe('<FormWithHooks />', () => {
     it('should render loader when form is loading', () => {
-        useForm.mockImplementation(() => getMockedUseForm({ isLoading: true }));
+        useForm.mockReturnValue(getMockedUseForm({ isLoading: true }));
 
         const component = mount(<FormWithHooks />);
 

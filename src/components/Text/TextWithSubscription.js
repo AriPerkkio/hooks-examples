@@ -1,6 +1,5 @@
-import React, { useReducer, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 
-import Stringify from 'components/Stringify';
 import Api from 'api';
 
 const commentReducer = (all, comment) => [...all, comment];
@@ -13,9 +12,7 @@ const TextWithSubscription = () => {
         return () => Api.unsubscribeComments(addComment);
     }, []);
 
-    return (
-        <Stringify indent={2}>{{ commentCount: comments.length }}</Stringify>
-    );
+    return `Comments: ${comments.length}`;
 };
 
 export default TextWithSubscription;

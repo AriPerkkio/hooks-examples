@@ -9,11 +9,10 @@ const UserCardInvalidDependencies = ({ userId }) => {
     useEffect(() => {
         Api.getUser(userId).then(setUser);
         return setUser; // Reset previous user
-    }, []); // eslint-disable-line
+        // eslint-disable-next-line
+    }, []);
 
-    if (!user) {
-        return <h2>Loading...</h2>;
-    }
+    if (!user) return <h2>Loading...</h2>;
 
     return (
         <div>

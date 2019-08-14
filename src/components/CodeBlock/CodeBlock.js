@@ -75,6 +75,7 @@ const CodeBlock = () => {
                             }}>
                             {formattedCode}
                         </SyntaxHighlighter>
+
                         <button
                             className={`${BASE_CLASS}-close`}
                             onClick={() => toggleCodes(codes[key])}>

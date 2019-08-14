@@ -23,11 +23,11 @@ const FormView = () => (
             />
         </div>
 
+        <CodeBlockButton fileName='hooks/useForm.js' text='useForm.js' />
         <CodeBlockButton
             fileName='components/Form/FormWithHooks.js'
             text='FormWithHooks.js'
         />
-        <CodeBlockButton fileName='hooks/useForm.js' text='useForm.js' />
     </>
 );
 

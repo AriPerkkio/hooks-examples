@@ -19,7 +19,7 @@ const EffectView = () => {
             <CodeBlockButton fileName='components/Text/TextWithSubscription.js' />
 
             <MountToggle>
-                <div>
+                <div className='common-text'>
                     <TextWithSubscription />
                 </div>
             </MountToggle>

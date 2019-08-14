@@ -17,8 +17,7 @@ const ReducerView = () => {
                 text='useReducer'
             />
 
-            <h2>useReducer accessing props easily</h2>
-
+            <h2>New reducer on each render</h2>
             <input
                 className='common-input block'
                 type='number'
@@ -29,7 +28,6 @@ const ReducerView = () => {
             <CodeBlockButton
                 className='block'
                 fileName='components/Input/InputWithReducerAndProps.js'
-                text='New reducer on each render'
             />
         </>
     );

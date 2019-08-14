@@ -24,12 +24,12 @@ export default [
         component: lazy(() => import('./EffectView')),
     },
     {
-        navigationName: 'Performance: useMemo, useCallback',
+        navigationName: 'useMemo, useCallback, useRef',
         path: '/performance',
         component: lazy(() => import('./PerformanceView')),
     },
     {
-        navigationName: 'Context View',
+        navigationName: 'useContext',
         path: '/context-view',
         component: lazy(() => import('./ContextView')),
     },
